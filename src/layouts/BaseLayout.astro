@@ -1,0 +1,164 @@
+---
+import InspectionForm from '../components/InspectionForm.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  showForms?: boolean;
+}
+
+const { title, description, canonical, showForms = true } = Astro.props;
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const canonicalUrl = canonical ?? `${siteUrl}${Astro.url.pathname}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav>
+        <a href="/" class="logo">Bloom Exterior Services</a>
+        <ul>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    {showForms && <InspectionForm variant="top" />}
+
+    <main>
+      <slot />
+    </main>
+
+    {showForms && <InspectionForm variant="bottom" />}
+
+    <footer class="site-footer">
+      <p>&copy; {new Date().getFullYear()} Bloom Exterior Services. All rights reserved.</p>
+    </footer>
+
+    <style is:global>
+      :root {
+        color-scheme: light;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+        /* Brand palette */
+        --color-navy: #0b2545;
+        --color-navy-light: #14335e;
+        --color-green: #2e8b47;
+        --color-green-bright: #3cb043;
+        --color-bg: #ffffff;
+        --color-bg-alt: #f4f7f6;
+        --color-text: #1a1a1a;
+        --color-text-muted: #5a6472;
+        --color-border: #e2e8e2;
+      }
+      body {
+        margin: 0;
+        color: var(--color-text);
+        background: var(--color-bg);
+        line-height: 1.6;
+      }
+      h1, h2, h3, h4 {
+        color: var(--color-navy);
+        line-height: 1.2;
+      }
+      a {
+        color: var(--color-green);
+      }
+      a:hover {
+        color: var(--color-green-bright);
+      }
+      .site-header {
+        display: flex;
+        justify-content: center;
+        padding: 1.25rem 2rem;
+        background: var(--color-bg);
+        border-bottom: 3px solid var(--color-green);
+      }
+      .site-header nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1100px;
+        width: 100%;
+      }
+      .site-header ul {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .site-header a {
+        text-decoration: none;
+        color: var(--color-navy);
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+      .site-header a:hover {
+        color: var(--color-green);
+      }
+      .logo {
+        font-weight: 800;
+        font-size: 1.15rem;
+        color: var(--color-navy) !important;
+      }
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2.5rem 2rem;
+      }
+      .btn,
+      button[type="submit"] {
+        display: inline-block;
+        background: var(--color-green);
+        color: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.15s ease;
+      }
+      .btn:hover,
+      button[type="submit"]:hover {
+        background: var(--color-green-bright);
+        color: #ffffff;
+      }
+      .site-footer {
+        text-align: center;
+        padding: 2rem;
+        background: var(--color-navy);
+        color: #ffffff;
+        font-size: 0.9rem;
+      }
+      .site-footer a {
+        color: var(--color-green-bright);
+      }
+    </style>
+  </body>
+</html>

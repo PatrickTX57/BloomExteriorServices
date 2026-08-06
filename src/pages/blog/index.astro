@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sanityEnabled, getAllBlogPosts } from '../../lib/sanity';
+
+// Prefer Sanity content once connected; fall back to local markdown posts
+// (src/content/blog) so the site keeps working before/without Sanity.
+type Post = { href: string; title: string; description: string };
+
+let posts: Post[];
+
+if (sanityEnabled) {
+  const sanityPosts = await getAllBlogPosts();
+  posts = sanityPosts.map((p) => ({
+    href: `/blog/${p.slug.current}/`,
+    title: p.seoTitle || p.title,
+    description: p.excerpt || '',
+  }));
+} else {
+  const localPosts = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  posts = localPosts.map((post) => ({
+    href: `/blog/${post.id}/`,
+    title: post.data.title,
+    description: post.data.description,
+  }));
+}
+---
+<BaseLayout
+  title="Blog | Bloom Exterior Services"
+  description="Tips and guides on drainage, gutters, roofing, and exterior home maintenance from Bloom Exterior Services."
+>
+  <h1>Blog</h1>
+  <ul>
+    {posts.map((post) => (
+      <li>
+        <a href={post.href}>{post.title}</a>
+        <p>{post.description}</p>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

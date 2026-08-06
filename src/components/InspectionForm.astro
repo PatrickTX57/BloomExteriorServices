@@ -1,0 +1,127 @@
+---
+export interface Props {
+  variant?: 'top' | 'bottom';
+}
+const { variant = 'top' } = Astro.props;
+
+// Formspree endpoint — sign up free at formspree.io, create a form, and put
+// the endpoint URL (https://formspree.io/f/xxxxxxx) in PUBLIC_FORM_ENDPOINT
+// in your .env / Netlify environment variables. Falls back to a mailto link
+// until that's set up so the form never silently fails.
+const formEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
+const fallbackMailto = 'mailto:patricksweeneybiz@gmail.com?subject=Free%20Inspection%20Request';
+const formId = `inspection-form-${variant}`;
+---
+<section class={`inspection-form inspection-form--${variant}`}>
+  <div class="inspection-form__inner">
+    <p class="inspection-form__eyebrow">Free, No-Obligation Inspection &amp; Estimate</p>
+
+    <form
+      id={formId}
+      class="inspection-form__form"
+      action={formEndpoint || fallbackMailto}
+      method="POST"
+    >
+      <div class="inspection-form__fields">
+        <label class="sr-only" for={`${formId}-first`}>First Name</label>
+        <input id={`${formId}-first`} type="text" name="firstName" placeholder="First Name" required autocomplete="given-name" />
+
+        <label class="sr-only" for={`${formId}-last`}>Last Name</label>
+        <input id={`${formId}-last`} type="text" name="lastName" placeholder="Last Name" required autocomplete="family-name" />
+
+        <label class="sr-only" for={`${formId}-email`}>Email</label>
+        <input id={`${formId}-email`} type="email" name="email" placeholder="Email" required autocomplete="email" />
+
+        <label class="sr-only" for={`${formId}-phone`}>Phone</label>
+        <input id={`${formId}-phone`} type="tel" name="phone" placeholder="Phone" required autocomplete="tel" />
+      </div>
+      <button type="submit" class="btn inspection-form__submit">Get My Free Estimate</button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .inspection-form {
+    padding: 1.25rem 2rem;
+  }
+  .inspection-form--top {
+    background: var(--color-bg-alt);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .inspection-form--bottom {
+    background: var(--color-navy);
+  }
+  .inspection-form--bottom .inspection-form__eyebrow {
+    color: #ffffff;
+  }
+  .inspection-form__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+  .inspection-form__eyebrow {
+    margin: 0;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-navy);
+    white-space: nowrap;
+  }
+  .inspection-form__form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    flex: 1;
+  }
+  .inspection-form__fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    flex: 1;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .inspection-form input {
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: #ffffff;
+    min-width: 140px;
+    flex: 1 1 150px;
+  }
+  .inspection-form input:focus {
+    outline: 2px solid var(--color-green);
+    outline-offset: 1px;
+  }
+  .inspection-form__submit {
+    white-space: nowrap;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  @media (max-width: 860px) {
+    .inspection-form__inner {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .inspection-form__fields {
+      flex-direction: column;
+    }
+    .inspection-form input {
+      width: 100%;
+    }
+    .inspection-form__submit {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from 'astro:content';
+import { PortableText } from 'astro-portabletext';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sanityEnabled, getAllBlogPosts } from '../../lib/sanity';
+
+export async function getStaticPaths() {
+  if (sanityEnabled) {
+    const sanityPosts = await getAllBlogPosts();
+    return sanityPosts.map((post) => ({
+      params: { id: post.slug.current },
+      props: { sanityPost: post },
+    }));
+  }
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post, sanityPost } = Astro.props as any;
+const Content = post ? (await render(post)).Content : null;
+---
+<BaseLayout
+  title={`${sanityPost ? (sanityPost.seoTitle || sanityPost.title) : post.data.title} | Bloom Exterior Services`}
+  description={sanityPost ? sanityPost.excerpt : post.data.description}
+>
+  <article>
+    <h1>{sanityPost ? sanityPost.title : post.data.title}</h1>
+    <p>
+      <em>
+        {new Date(sanityPost ? sanityPost.publishedAt : post.data.pubDate).toDateString()}
+      </em>
+    </p>
+    {sanityPost ? <PortableText value={sanityPost.body} /> : <Content />}
+  </article>
+</BaseLayout>
