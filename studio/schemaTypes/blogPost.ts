@@ -19,30 +19,42 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          'Foundation Protection',
+          'Drainage',
+          'Irrigation',
+          'Automation',
+          'Landscaping',
+          'Hardscaping',
+          'Lighting',
+        ],
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'excerpt',
       title: 'SEO Description / Excerpt',
       type: 'text',
       rows: 3,
-      description: 'Used as the meta description and blog list preview. Keep under 160 characters for best SEO results.',
-      validation: (Rule) => Rule.max(160).warning('Longer than 160 characters may get cut off in search results.'),
+      description: 'A short summary used for SEO meta description and blog listing preview.',
+      validation: (Rule) => Rule.max(160).warning('Should be under 160 characters for best SEO results'),
     }),
     defineField({
       name: 'mainImage',
       title: 'Main Image',
       type: 'image',
       options: { hotspot: true },
-      fields: [
-        { name: 'alt', title: 'Alt text (important for SEO)', type: 'string' },
-      ],
+      fields: [{ name: 'alt', title: 'Alt text (important for SEO)', type: 'string' }],
     }),
     defineField({
       name: 'body',
       title: 'Body',
       type: 'array',
-      of: [
-        { type: 'block' },
-        { type: 'image', options: { hotspot: true } },
-      ],
+      of: [{ type: 'block' }, { type: 'image', options: { hotspot: true } }],
     }),
     defineField({
       name: 'tags',
