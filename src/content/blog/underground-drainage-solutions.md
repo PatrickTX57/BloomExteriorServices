@@ -2,6 +2,7 @@
 title: "Underground Drainage Solutions: A Homeowner's Guide"
 description: "Learn how underground drainage systems protect your foundation, yard, and landscaping from water damage, and how to know if you need one."
 pubDate: 2026-08-06
+category: "Drainage"
 tags: ["drainage", "gutters", "foundation"]
 ---
 
