@@ -3,41 +3,112 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { sanityEnabled, getAllBlogPosts } from '../../lib/sanity';
 
-// Prefer Sanity content once connected; fall back to local markdown posts
-// (src/content/blog) so the site keeps working before/without Sanity.
-type Post = { href: string; title: string; description: string };
-
+type Post = { href: string; title: string; description: string; category: string; pubDate: Date };
 let posts: Post[];
 
 if (sanityEnabled) {
   const sanityPosts = await getAllBlogPosts();
   posts = sanityPosts.map((p) => ({
-    href: `/blog/${p.slug.current}/`,
+    href: \`/blog/\${p.slug.current}/\`,
     title: p.seoTitle || p.title,
     description: p.excerpt || '',
+    category: p.category || '',
+    pubDate: new Date(p.publishedAt),
   }));
 } else {
-  const localPosts = (await getCollection('blog')).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-  );
+  const localPosts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   posts = localPosts.map((post) => ({
-    href: `/blog/${post.id}/`,
+    href: \`/blog/\${post.id}/\`,
     title: post.data.title,
     description: post.data.description,
+    category: post.data.category,
+    pubDate: post.data.pubDate,
   }));
 }
 ---
-<BaseLayout
-  title="Blog | Bloom Exterior Services"
-  description="Tips and guides on drainage, gutters, roofing, and exterior home maintenance from Bloom Exterior Services."
->
-  <h1>Blog</h1>
-  <ul>
+<BaseLayout title="Blog | Bloom Exterior Services" description="Tips and guides on landscaping, irrigation, drainage, hardscape, and lighting from Bloom Exterior Services.">
+  <div class="section-head">
+    <div class="eyebrow">Our Blog</div>
+    <h1>Tips, Guides &amp; Ideas for Your Yard</h1>
+    <p>Practical advice on landscaping, irrigation, drainage, hardscape, and lighting from the Bloom Exterior Services team.</p>
+  </div>
+  <div class="posts-grid">
     {posts.map((post) => (
-      <li>
-        <a href={post.href}>{post.title}</a>
+      <a class="post-card" href={post.href}>
+        <span class="post-category">{post.category}</span>
+        <h2>{post.title}</h2>
         <p>{post.description}</p>
-      </li>
+        <span class="post-date">{post.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+      </a>
     ))}
-  </ul>
+  </div>
 </BaseLayout>
+
+<style>
+  .section-head {
+    text-align: center;
+    max-width: 640px;
+    margin: 3rem auto 3rem;
+  }
+  .eyebrow {
+    color: var(--color-green);
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    padding-bottom: 4rem;
+  }
+  .post-card {
+    background: var(--color-bg-alt);
+    border-radius: 10px;
+    padding: 28px 26px;
+    border: 1px solid var(--color-border);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .post-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(15, 42, 74, 0.1);
+    border-color: var(--color-green-light);
+  }
+  .post-category {
+    display: inline-block;
+    background: var(--color-navy);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .post-card h2 {
+    font-size: 20px;
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+  .post-card p {
+    color: var(--color-text-muted);
+    font-size: 15px;
+    margin: 0 0 14px;
+  }
+  .post-date {
+    color: var(--color-text-muted);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  @media (max-width: 900px) {
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
