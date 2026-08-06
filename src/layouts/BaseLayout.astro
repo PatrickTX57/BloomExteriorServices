@@ -1,14 +1,11 @@
 ---
-import InspectionForm from '../components/InspectionForm.astro';
-
 export interface Props {
   title: string;
   description: string;
   canonical?: string;
-  showForms?: boolean;
 }
 
-const { title, description, canonical, showForms = true } = Astro.props;
+const { title, description, canonical } = Astro.props;
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const canonicalUrl = canonical ?? `${siteUrl}${Astro.url.pathname}`;
 
@@ -84,6 +81,9 @@ const localBusinessSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Mailchimp signup popup -->
+    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/7f1898a4984b8735a377a8f10/63a8e989108e6b35bb8297cda.js");</script>
   </head>
   <body>
     <header class="site-header">
@@ -102,13 +102,9 @@ const localBusinessSchema = {
       </div>
     </header>
 
-    {showForms && <InspectionForm variant="top" />}
-
     <main>
       <slot />
     </main>
-
-    {showForms && <InspectionForm variant="bottom" />}
 
     <footer class="site-footer">
       <div class="container footer-grid">
