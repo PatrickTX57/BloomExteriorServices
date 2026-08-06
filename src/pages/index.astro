@@ -1,31 +1,492 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const services = [
+  { icon: '🏠', title: 'Siding Installation & Repair', desc: 'Vinyl, fiber cement, and engineered wood siding installed and repaired by trained professionals.' },
+  { icon: '🎨', title: 'Exterior Painting', desc: 'Premium coatings and expert prep work for a finish that stands up to Texas weather.' },
+  { icon: '💦', title: 'Pressure Washing', desc: 'Driveways, siding, decks, and walkways cleaned and restored with soft-wash technology.' },
+  { icon: '🏗️', title: 'Gutter Installation & Cleaning', desc: 'Seamless gutters, guards, and routine cleanings that keep water moving away from your home.' },
+  { icon: '🪟', title: 'Window & Trim Work', desc: 'Trim replacement, caulking, and window surrounds that seal out moisture and pests.' },
+  { icon: '🔧', title: 'Storm & Roof Exterior Repair', desc: 'Fast, insurance-friendly repairs for storm damage to siding, fascia, and soffits.' },
+];
+
+const process = [
+  { num: 1, title: 'Free Consultation', desc: "Call or submit a request and we'll schedule an on-site visit." },
+  { num: 2, title: 'Custom Estimate', desc: 'Receive a clear, itemized quote with no hidden fees.' },
+  { num: 3, title: 'Quality Work', desc: 'Our crew completes the job on schedule and keeps your property clean.' },
+  { num: 4, title: 'Final Walkthrough', desc: "We review the finished work with you to make sure you're satisfied." },
+];
+
+const testimonials = [
+  { initials: 'JM', name: 'Jennifer M.', location: 'Plano, TX', quote: 'Bloom repainted our whole exterior and it looks brand new. Crew was punctual and cleaned up perfectly every day.' },
+  { initials: 'DR', name: 'David R.', location: 'Frisco, TX', quote: 'Fast, fair pricing, and great communication throughout our siding replacement. Highly recommend.' },
+  { initials: 'SK', name: 'Sarah K.', location: 'Allen, TX', quote: 'Our house has never looked cleaner. The pressure washing team was thorough and professional.' },
+];
 ---
 <BaseLayout
-  title="Bloom Exterior Services | Roofing, Gutters & Drainage Experts"
-  description="Bloom Exterior Services provides expert roofing, gutter, siding, and drainage solutions. Serving homeowners with quality craftsmanship and honest advice."
+  title="Exterior Home Services in Plano, TX | Bloom Exterior Services"
+  description="Bloom Exterior Services offers siding, exterior painting, pressure washing, gutter installation, and storm repair for homeowners in Plano, Frisco, Allen, and the DFW metro. Free estimates."
 >
-  <section>
-    <h1>Protecting Your Home, <span style="color: var(--color-green);">Inside and Out</span></h1>
-    <p>
-      Bloom Exterior Services helps homeowners solve exterior drainage, roofing,
-      and siding problems before they become expensive repairs.
-    </p>
-    <a href="/contact" class="btn">Get a Free Consultation</a>
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="badge">Serving Plano &amp; the DFW Metro</span>
+      <h1>Give your home's exterior a <em>fresh bloom.</em></h1>
+      <p>Bloom Exterior Services delivers top-quality siding, painting, pressure washing, and gutter care that protects your home and boosts its curb appeal — done right, the first time.</p>
+      <div class="btn-row">
+        <a href="/contact" class="btn">Get a Free Estimate</a>
+        <a href="tel:4697591171" class="btn-outline hero-outline">Call (469) 759-1171</a>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2>Our Services</h2>
-    <ul>
-      <li>Underground & Surface Drainage Solutions</li>
-      <li>Gutter Installation & Repair</li>
-      <li>Roofing</li>
-      <li>Siding & Exterior Restoration</li>
-    </ul>
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-item"><span>15+</span>Years in Business</div>
+      <div class="trust-item"><span>2,000+</span>Homes Serviced</div>
+      <div class="trust-item"><span>5.0★</span>Average Rating</div>
+      <div class="trust-item"><span>100%</span>Satisfaction Guarantee</div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="section-head">
+      <div class="eyebrow">What We Do</div>
+      <h2>Exterior Services Built to Last</h2>
+      <p>From a full siding replacement to a simple soft wash, our licensed and insured crews handle every job with care.</p>
+    </div>
+    <div class="services-grid">
+      {services.map((s) => (
+        <div class="service-card">
+          <div class="service-icon">{s.icon}</div>
+          <h3>{s.title}</h3>
+          <p>{s.desc}</p>
+        </div>
+      ))}
+    </div>
+    <p class="services-more"><a href="/services">See full service details &rarr;</a></p>
   </section>
+
+  <section class="about-section">
+    <div class="about-grid">
+      <div class="about-photo" role="img" aria-label="Bloom Exterior Services crew completing a siding project in Plano, TX">[ Photo of crew / completed project ]</div>
+      <div>
+        <div class="eyebrow eyebrow-light">Why Homeowners Choose Us</div>
+        <h2>Local, Licensed, and Focused on the Details</h2>
+        <p>Bloom Exterior Services is a Plano-based team dedicated to helping homeowners across DFW protect and beautify their properties. We show up on time, communicate clearly, and stand behind every project.</p>
+        <ul class="about-list">
+          <li><span class="check">✓</span> Licensed &amp; fully insured crews</li>
+          <li><span class="check">✓</span> Free, no-pressure estimates</li>
+          <li><span class="check">✓</span> Written warranty on all work</li>
+          <li><span class="check">✓</span> Local team, fast response times</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="section-head">
+      <div class="eyebrow">How It Works</div>
+      <h2>Simple, Transparent Process</h2>
+      <p>From first call to final walkthrough, we keep you informed every step of the way.</p>
+    </div>
+    <div class="process-grid">
+      {process.map((step) => (
+        <div class="process-step">
+          <div class="step-num">{step.num}</div>
+          <h4>{step.title}</h4>
+          <p>{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <div class="section-head">
+      <div class="eyebrow">Testimonials</div>
+      <h2>What Our Customers Say</h2>
+    </div>
+    <div class="testi-grid">
+      {testimonials.map((t) => (
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>"{t.quote}"</p>
+          <div class="testi-author">
+            <div class="avatar">{t.initials}</div>
+            <div><strong>{t.name}</strong><span>{t.location}</span></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="cta-banner">
+    <h2>Ready to Refresh Your Home's Exterior?</h2>
+    <p>Get a free, no-obligation estimate from the Bloom Exterior Services team today.</p>
+    <a href="/contact" class="btn cta-btn">Request a Free Quote</a>
+  </div>
 
   <section>
     <h2>Latest from the Blog</h2>
     <p><a href="/blog">Read our latest articles &rarr;</a></p>
   </section>
 </BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-dark) 100%);
+    color: #fff;
+    padding: 100px 24px 90px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 -24px;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -100px;
+    top: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(63, 162, 87, 0.25), transparent 70%);
+  }
+  .hero-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(63, 162, 87, 0.15);
+    border: 1px solid var(--color-green-light);
+    color: var(--color-green-light);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.15;
+    max-width: 650px;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--color-green-light);
+  }
+  .hero p {
+    font-size: 18px;
+    max-width: 540px;
+    color: #dbe3ec;
+    margin-bottom: 32px;
+  }
+  .btn-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .hero-outline {
+    border-color: #fff;
+    color: #fff;
+  }
+  .hero-outline:hover {
+    background: #fff;
+    color: var(--color-navy);
+  }
+
+  .trust-bar {
+    background: var(--color-bg-alt);
+    padding: 18px 0;
+    border-bottom: 1px solid var(--color-border);
+    margin: 0 -24px;
+  }
+  .trust-bar .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 16px;
+    text-align: center;
+  }
+  .trust-item {
+    font-weight: 700;
+    color: var(--color-navy);
+    font-size: 14px;
+  }
+  .trust-item span {
+    display: block;
+    font-size: 22px;
+    color: var(--color-green);
+    font-weight: 800;
+  }
+
+  section {
+    padding: 80px 0;
+  }
+  .section-head {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 50px;
+  }
+  .eyebrow {
+    color: var(--color-green);
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .eyebrow-light {
+    color: #7fd196;
+  }
+  .section-head h2 {
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+  .section-head p {
+    color: var(--color-text-muted);
+    font-size: 16px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .service-card {
+    background: var(--color-bg-alt);
+    border-radius: 10px;
+    padding: 32px 26px;
+    border: 1px solid var(--color-border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(15, 42, 74, 0.1);
+    border-color: var(--color-green-light);
+  }
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    background: var(--color-navy);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 18px;
+  }
+  .service-card h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .service-card p {
+    color: var(--color-text-muted);
+    font-size: 15px;
+  }
+  .services-more {
+    text-align: center;
+    margin-top: 36px;
+    font-weight: 600;
+  }
+
+  .about-section {
+    background: var(--color-navy);
+    color: #fff;
+    margin: 0 -24px;
+    padding: 80px 24px;
+  }
+  .about-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-grid h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 18px;
+    color: #fff;
+  }
+  .about-grid p {
+    color: #c8d2dc;
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+  .about-list {
+    list-style: none;
+    margin-top: 20px;
+    padding: 0;
+  }
+  .about-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-green);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .about-photo {
+    background: linear-gradient(135deg, var(--color-green), var(--color-navy-dark));
+    border-radius: 12px;
+    height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .process-step {
+    text-align: center;
+  }
+  .step-num {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-green);
+    color: #fff;
+    font-weight: 800;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+  }
+  .process-step h4 {
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 17px;
+  }
+  .process-step p {
+    color: var(--color-text-muted);
+    font-size: 14px;
+  }
+
+  .testimonials {
+    background: var(--color-bg-alt);
+    margin: 0 -24px;
+    padding: 80px 24px;
+  }
+  .testi-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .testi-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(15, 42, 74, 0.06);
+  }
+  .stars {
+    color: var(--color-green);
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+  .testi-card p {
+    color: var(--color-text-muted);
+    font-size: 15px;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--color-navy);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .testi-author strong {
+    display: block;
+    font-size: 14px;
+  }
+  .testi-author span {
+    color: var(--color-text-muted);
+    font-size: 13px;
+  }
+
+  .cta-banner {
+    background: var(--color-green);
+    color: #fff;
+    text-align: center;
+    padding: 60px 24px;
+    margin: 0 -24px;
+  }
+  .cta-banner h2 {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+  .cta-banner p {
+    margin-bottom: 26px;
+    font-size: 16px;
+    color: #e6f4ea;
+  }
+  .cta-btn {
+    background: var(--color-navy);
+  }
+  .cta-btn:hover {
+    background: var(--color-navy-dark);
+  }
+
+  @media (max-width: 900px) {
+    .hero h1 {
+      font-size: 34px;
+    }
+    .services-grid,
+    .process-grid,
+    .testi-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-photo {
+      height: 220px;
+    }
+  }
+</style>
