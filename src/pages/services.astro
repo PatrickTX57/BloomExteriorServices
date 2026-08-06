@@ -1,10 +1,91 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const services = [
+  { icon: '🏠', title: 'Siding Installation & Repair', desc: 'Vinyl, fiber cement, and engineered wood siding installed and repaired by trained professionals. We help you choose the right material for your home and budget, then install it to last.' },
+  { icon: '🎨', title: 'Exterior Painting', desc: 'Premium coatings and expert prep work — pressure washing, scraping, and caulking — for a finish that stands up to Texas heat, storms, and sun without peeling or fading early.' },
+  { icon: '💦', title: 'Pressure Washing', desc: 'Driveways, siding, decks, and walkways cleaned and restored with soft-wash technology that removes dirt, mildew, and algae without damaging your surfaces.' },
+  { icon: '🏗️', title: 'Gutter Installation & Cleaning', desc: 'Seamless gutters, guards, and routine cleanings that keep water moving away from your home instead of pooling at the foundation or overflowing onto siding.' },
+  { icon: '🪟', title: 'Window & Trim Work', desc: 'Trim replacement, caulking, and window surrounds that seal out moisture and pests, and keep your home looking sharp from the curb.' },
+  { icon: '🔧', title: 'Storm & Roof Exterior Repair', desc: 'Fast, insurance-friendly repairs for storm damage to siding, fascia, and soffits — we work directly with your adjuster when needed.' },
+];
 ---
 <BaseLayout
-  title="Services | Bloom Exterior Services"
-  description="Drainage, gutter, roofing, and siding services from Bloom Exterior Services."
+  title="Exterior Services | Bloom Exterior Services"
+  description="Siding, painting, pressure washing, gutters, window & trim work, and storm repair for homeowners in Plano, Frisco, Allen, McKinney, and the DFW metro."
 >
-  <h1>Our Services</h1>
-  <p>Details on each service coming soon.</p>
+  <div class="section-head">
+    <div class="eyebrow">What We Do</div>
+    <h1>Exterior Services Built to Last</h1>
+    <p>From a full siding replacement to a simple soft wash, our licensed and insured crews handle every job with care.</p>
+  </div>
+  <div class="services-grid">
+    {services.map((s) => (
+      <div class="service-card">
+        <div class="service-icon">{s.icon}</div>
+        <h2>{s.title}</h2>
+        <p>{s.desc}</p>
+      </div>
+    ))}
+  </div>
 </BaseLayout>
+
+<style>
+  .section-head {
+    text-align: center;
+    max-width: 640px;
+    margin: 3rem auto 3rem;
+  }
+  .eyebrow {
+    color: var(--color-green);
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    padding-bottom: 4rem;
+  }
+  .service-card {
+    background: var(--color-bg-alt);
+    border-radius: 10px;
+    padding: 32px 26px;
+    border: 1px solid var(--color-border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(15, 42, 74, 0.1);
+    border-color: var(--color-green-light);
+  }
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    background: var(--color-navy);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 18px;
+  }
+  .service-card h2 {
+    font-size: 19px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .service-card p {
+    color: var(--color-text-muted);
+    font-size: 15px;
+  }
+  @media (max-width: 900px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
