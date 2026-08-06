@@ -1,15 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Same Web3Forms setup as the slim top/bottom bars — see src/components/InspectionForm.astro
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY;
+const fallbackMailto = 'mailto:patricksweeneybiz@gmail.com?subject=New%20Website%20Contact%20Request';
 ---
 <BaseLayout
   title="Contact Us | Bloom Exterior Services"
   description="Get in touch with Bloom Exterior Services for a free, no-obligation estimate. Serving Plano, Frisco, Allen, McKinney, and the DFW metro."
+  showForms={false}
 >
-  <div class="contact-wrap">
+  <div class="contact-grid">
     <div class="contact-info">
       <div class="eyebrow">Contact Us</div>
       <h1>Let's Talk About Your Project</h1>
-      <p>Reach out by phone or email and we'll get back to you within one business day. You can also use the signup popup on this site to join our list and get updates.</p>
+      <p>Reach out by phone, email, or the form and we'll get back to you within one business day.</p>
       <div class="info-row">
         <div class="info-icon">📍</div>
         <div><strong>Address</strong><span>1600 W Plano Pkwy, STE 9<br />Plano, TX 75075</span></div>
@@ -27,13 +32,48 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div><strong>Hours</strong><span>Mon–Fri: 8:00 AM – 6:00 PM<br />Sat: 9:00 AM – 2:00 PM</span></div>
       </div>
     </div>
+
+    <form action={accessKey ? 'https://api.web3forms.com/submit' : fallbackMailto} method="POST">
+      {accessKey && <input type="hidden" name="access_key" value={accessKey} />}
+      {accessKey && <input type="hidden" name="subject" value="New Contact Form Submission — Bloom Exterior Services" />}
+      {accessKey && <input type="hidden" name="from_name" value="Bloom Exterior Services Website" />}
+
+      <div class="form-row">
+        <div><label for="firstName">First Name</label><input id="firstName" type="text" name="First Name" placeholder="Jane" required /></div>
+        <div><label for="lastName">Last Name</label><input id="lastName" type="text" name="Last Name" placeholder="Doe" required /></div>
+      </div>
+      <div class="form-row">
+        <div><label for="phone">Phone</label><input id="phone" type="tel" name="Phone" placeholder="(469) 555-0123" required /></div>
+        <div><label for="email">Email</label><input id="email" type="email" name="email" placeholder="jane@email.com" required /></div>
+      </div>
+      <div class="form-full">
+        <label for="service">Service Needed</label>
+        <select id="service" name="Service Needed">
+          <option>Landscape</option>
+          <option>Sprinklers</option>
+          <option>Drip Systems</option>
+          <option>Underground Drainage</option>
+          <option>French Drains</option>
+          <option>Hardscape</option>
+          <option>Permanent and Holiday Lighting</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-full">
+        <label for="details">Project Details</label>
+        <textarea id="details" name="Project Details" placeholder="Tell us a bit about your project..."></textarea>
+      </div>
+      <button type="submit">Request Free Estimate</button>
+    </form>
   </div>
 </BaseLayout>
 
 <style>
-  .contact-wrap {
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
     padding: 3rem 0 4rem;
-    max-width: 560px;
   }
   .eyebrow {
     color: var(--color-green);
@@ -79,5 +119,73 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
   .info-row a:hover {
     color: var(--color-green);
+  }
+
+  form {
+    background: var(--color-bg-alt);
+    padding: 34px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: 6px;
+  }
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #fff;
+  }
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--color-green);
+  }
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  .form-full {
+    margin-bottom: 16px;
+  }
+  form button {
+    width: 100%;
+    background: var(--color-green);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.2s;
+  }
+  form button:hover {
+    background: var(--color-green-light);
+  }
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .form-row {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
