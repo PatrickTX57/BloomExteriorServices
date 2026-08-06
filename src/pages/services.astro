@@ -2,22 +2,23 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const services = [
-  { icon: '🏠', title: 'Siding Installation & Repair', desc: 'Vinyl, fiber cement, and engineered wood siding installed and repaired by trained professionals. We help you choose the right material for your home and budget, then install it to last.' },
-  { icon: '🎨', title: 'Exterior Painting', desc: 'Premium coatings and expert prep work — pressure washing, scraping, and caulking — for a finish that stands up to Texas heat, storms, and sun without peeling or fading early.' },
-  { icon: '💦', title: 'Pressure Washing', desc: 'Driveways, siding, decks, and walkways cleaned and restored with soft-wash technology that removes dirt, mildew, and algae without damaging your surfaces.' },
-  { icon: '🏗️', title: 'Gutter Installation & Cleaning', desc: 'Seamless gutters, guards, and routine cleanings that keep water moving away from your home instead of pooling at the foundation or overflowing onto siding.' },
-  { icon: '🪟', title: 'Window & Trim Work', desc: 'Trim replacement, caulking, and window surrounds that seal out moisture and pests, and keep your home looking sharp from the curb.' },
-  { icon: '🔧', title: 'Storm & Roof Exterior Repair', desc: 'Fast, insurance-friendly repairs for storm damage to siding, fascia, and soffits — we work directly with your adjuster when needed.' },
+  { icon: '🌳', title: 'Landscape', desc: 'Full landscape design and installation — beds, mulch, plantings, and clean lines that boost curb appeal year-round.' },
+  { icon: '💧', title: 'Sprinklers', desc: 'Sprinkler system installation, repair, and seasonal tune-ups that keep your lawn healthy without wasting water.' },
+  { icon: '🚰', title: 'Drip Systems', desc: "Efficient drip irrigation for flower beds, shrubs, and gardens that delivers water exactly where it's needed." },
+  { icon: '🌊', title: 'Underground Drainage', desc: 'Underground drainage solutions that move water away from your home and yard before it becomes a problem.' },
+  { icon: '🪨', title: 'French Drains', desc: 'French drain installation to redirect groundwater and keep low spots in your yard from flooding after storms.' },
+  { icon: '🧱', title: 'Hardscape', desc: 'Patios, walkways, and retaining walls built with quality materials that stand up to Texas weather.' },
+  { icon: '💡', title: 'Permanent and Holiday Lighting', desc: 'Permanent architectural lighting and holiday lighting installation — set the mood year-round or just for the season.' },
 ];
 ---
 <BaseLayout
   title="Exterior Services | Bloom Exterior Services"
-  description="Siding, painting, pressure washing, gutters, window & trim work, and storm repair for homeowners in Plano, Frisco, Allen, McKinney, and the DFW metro."
+  description="Landscape, sprinklers, drip systems, underground drainage, French drains, hardscape, and permanent/holiday lighting for homeowners in Plano, Frisco, Allen, McKinney, and the DFW metro."
 >
   <div class="section-head">
     <div class="eyebrow">What We Do</div>
     <h1>Exterior Services Built to Last</h1>
-    <p>From a full siding replacement to a simple soft wash, our licensed and insured crews handle every job with care.</p>
+    <p>From a full landscape refresh to a French drain that finally solves your drainage headache, our licensed and insured crews handle every job with care.</p>
   </div>
   <div class="services-grid">
     {services.map((s) => (
