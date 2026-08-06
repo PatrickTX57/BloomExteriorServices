@@ -4,18 +4,24 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { sanityEnabled, getAllBlogPosts } from '../../lib/sanity';
 
 type Post = { href: string; title: string; description: string; category: string; pubDate: Date };
-let posts: Post[];
+let posts: Post[] = [];
 
 if (sanityEnabled) {
   const sanityPosts = await getAllBlogPosts();
-  posts = sanityPosts.map((p) => ({
-    href: `/blog/${p.slug.current}/`,
-    title: p.seoTitle || p.title,
-    description: p.excerpt || '',
-    category: p.category || '',
-    pubDate: new Date(p.publishedAt),
-  }));
-} else {
+  if (sanityPosts.length > 0) {
+    posts = sanityPosts.map((p) => ({
+      href: `/blog/${p.slug.current}/`,
+      title: p.seoTitle || p.title,
+      description: p.excerpt || '',
+      category: p.category || '',
+      pubDate: new Date(p.publishedAt),
+    }));
+  }
+}
+
+// Fall back to local markdown posts when Sanity isn't connected, or is
+// connected but doesn't have any blog posts published yet.
+if (posts.length === 0) {
   const localPosts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   posts = localPosts.map((post) => ({
     href: `/blog/${post.id}/`,
