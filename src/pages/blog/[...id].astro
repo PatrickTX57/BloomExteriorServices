@@ -21,7 +21,7 @@ const description = sanityPost ? sanityPost.excerpt : post.data.description;
 const category = sanityPost ? sanityPost.category : post.data.category;
 const pubDate = new Date(sanityPost ? sanityPost.publishedAt : post.data.pubDate);
 ---
-<BaseLayout title={\`\${title} | Bloom Exterior Services\`} description={description}>
+<BaseLayout title={`${title} | Bloom Exterior Services`} description={description}>
   <article class="post">
     <div class="post-header">
       {category && <span class="post-category">{category}</span>}
