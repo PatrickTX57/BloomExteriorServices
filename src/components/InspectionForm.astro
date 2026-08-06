@@ -4,11 +4,12 @@ export interface Props {
 }
 const { variant = 'top' } = Astro.props;
 
-// Formspree endpoint — sign up free at formspree.io, create a form, and put
-// the endpoint URL (https://formspree.io/f/xxxxxxx) in PUBLIC_FORM_ENDPOINT
-// in your .env / Netlify environment variables. Falls back to a mailto link
-// until that's set up so the form never silently fails.
-const formEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT;
+// Web3Forms — free form backend, no account dashboard needed beyond the
+// access key. Key lives in PUBLIC_WEB3FORMS_ACCESS_KEY (Netlify env vars /
+// .env) rather than hardcoded, so it can be rotated without a code change.
+// Falls back to a mailto link if that env var isn't set, so the form never
+// silently fails.
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY;
 const fallbackMailto = 'mailto:patricksweeneybiz@gmail.com?subject=Free%20Inspection%20Request';
 const formId = `inspection-form-${variant}`;
 ---
@@ -19,21 +20,25 @@ const formId = `inspection-form-${variant}`;
     <form
       id={formId}
       class="inspection-form__form"
-      action={formEndpoint || fallbackMailto}
+      action={accessKey ? 'https://api.web3forms.com/submit' : fallbackMailto}
       method="POST"
     >
+      {accessKey && <input type="hidden" name="access_key" value={accessKey} />}
+      {accessKey && <input type="hidden" name="subject" value="New Free Inspection Request — Bloom Exterior Services" />}
+      {accessKey && <input type="hidden" name="from_name" value="Bloom Exterior Services Website" />}
+
       <div class="inspection-form__fields">
         <label class="sr-only" for={`${formId}-first`}>First Name</label>
-        <input id={`${formId}-first`} type="text" name="firstName" placeholder="First Name" required autocomplete="given-name" />
+        <input id={`${formId}-first`} type="text" name="First Name" placeholder="First Name" required autocomplete="given-name" />
 
         <label class="sr-only" for={`${formId}-last`}>Last Name</label>
-        <input id={`${formId}-last`} type="text" name="lastName" placeholder="Last Name" required autocomplete="family-name" />
+        <input id={`${formId}-last`} type="text" name="Last Name" placeholder="Last Name" required autocomplete="family-name" />
 
         <label class="sr-only" for={`${formId}-email`}>Email</label>
         <input id={`${formId}-email`} type="email" name="email" placeholder="Email" required autocomplete="email" />
 
         <label class="sr-only" for={`${formId}-phone`}>Phone</label>
-        <input id={`${formId}-phone`} type="tel" name="phone" placeholder="Phone" required autocomplete="tel" />
+        <input id={`${formId}-phone`} type="tel" name="Phone" placeholder="Phone" required autocomplete="tel" />
       </div>
       <button type="submit" class="btn inspection-form__submit">Get My Free Estimate</button>
     </form>
