@@ -7,8 +7,12 @@ import { sanityEnabled, getAllBlogPosts } from '../../lib/sanity';
 export async function getStaticPaths() {
   if (sanityEnabled) {
     const sanityPosts = await getAllBlogPosts();
-    return sanityPosts.map((post) => ({ params: { id: post.slug.current }, props: { sanityPost: post } }));
+    if (sanityPosts.length > 0) {
+      return sanityPosts.map((post) => ({ params: { id: post.slug.current }, props: { sanityPost: post } }));
+    }
   }
+  // Fall back to local markdown posts when Sanity isn't connected, or is
+  // connected but doesn't have any blog posts published yet.
   const posts = await getCollection('blog');
   return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
 }
