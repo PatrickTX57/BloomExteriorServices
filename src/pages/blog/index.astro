@@ -9,7 +9,7 @@ let posts: Post[];
 if (sanityEnabled) {
   const sanityPosts = await getAllBlogPosts();
   posts = sanityPosts.map((p) => ({
-    href: \`/blog/\${p.slug.current}/\`,
+    href: `/blog/${p.slug.current}/`,
     title: p.seoTitle || p.title,
     description: p.excerpt || '',
     category: p.category || '',
@@ -18,7 +18,7 @@ if (sanityEnabled) {
 } else {
   const localPosts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   posts = localPosts.map((post) => ({
-    href: \`/blog/\${post.id}/\`,
+    href: `/blog/${post.id}/`,
     title: post.data.title,
     description: post.data.description,
     category: post.data.category,
