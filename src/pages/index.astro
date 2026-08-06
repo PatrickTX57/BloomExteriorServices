@@ -2,12 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const services = [
-  { icon: '🏠', title: 'Siding Installation & Repair', desc: 'Vinyl, fiber cement, and engineered wood siding installed and repaired by trained professionals.' },
-  { icon: '🎨', title: 'Exterior Painting', desc: 'Premium coatings and expert prep work for a finish that stands up to Texas weather.' },
-  { icon: '💦', title: 'Pressure Washing', desc: 'Driveways, siding, decks, and walkways cleaned and restored with soft-wash technology.' },
-  { icon: '🏗️', title: 'Gutter Installation & Cleaning', desc: 'Seamless gutters, guards, and routine cleanings that keep water moving away from your home.' },
-  { icon: '🪟', title: 'Window & Trim Work', desc: 'Trim replacement, caulking, and window surrounds that seal out moisture and pests.' },
-  { icon: '🔧', title: 'Storm & Roof Exterior Repair', desc: 'Fast, insurance-friendly repairs for storm damage to siding, fascia, and soffits.' },
+  { icon: '🌳', title: 'Landscape', desc: 'Full landscape design and installation for beds, plantings, and clean curb appeal.' },
+  { icon: '💧', title: 'Sprinklers', desc: 'Sprinkler installation, repair, and tune-ups that keep your lawn healthy.' },
+  { icon: '🚰', title: 'Drip Systems', desc: "Efficient drip irrigation that waters beds and shrubs exactly where it's needed." },
+  { icon: '🌊', title: 'Underground Drainage', desc: 'Underground drainage that moves water away from your home and yard.' },
+  { icon: '🪨', title: 'French Drains', desc: 'French drain installation to stop pooling and flooding after storms.' },
+  { icon: '🧱', title: 'Hardscape', desc: 'Patios, walkways, and retaining walls built to last.' },
+  { icon: '💡', title: 'Permanent and Holiday Lighting', desc: 'Permanent and holiday lighting installed for year-round curb appeal.' },
 ];
 
 const process = [
@@ -18,20 +19,20 @@ const process = [
 ];
 
 const testimonials = [
-  { initials: 'JM', name: 'Jennifer M.', location: 'Plano, TX', quote: 'Bloom repainted our whole exterior and it looks brand new. Crew was punctual and cleaned up perfectly every day.' },
-  { initials: 'DR', name: 'David R.', location: 'Frisco, TX', quote: 'Fast, fair pricing, and great communication throughout our siding replacement. Highly recommend.' },
-  { initials: 'SK', name: 'Sarah K.', location: 'Allen, TX', quote: 'Our house has never looked cleaner. The pressure washing team was thorough and professional.' },
+  { initials: 'JM', name: 'Jennifer M.', location: 'Plano, TX', quote: 'Bloom transformed our landscape and it looks incredible. Crew was punctual and cleaned up perfectly every day.' },
+  { initials: 'DR', name: 'David R.', location: 'Frisco, TX', quote: 'Fast, fair pricing, and great communication throughout our French drain installation. Highly recommend.' },
+  { initials: 'SK', name: 'Sarah K.', location: 'Allen, TX', quote: "Our yard's drainage issues are finally solved. The team was thorough and professional." },
 ];
 ---
 <BaseLayout
-  title="Exterior Home Services in Plano, TX | Bloom Exterior Services"
-  description="Bloom Exterior Services offers siding, exterior painting, pressure washing, gutter installation, and storm repair for homeowners in Plano, Frisco, Allen, and the DFW metro. Free estimates."
+  title="Landscape & Drainage Services in Plano, TX | Bloom Exterior Services"
+  description="Bloom Exterior Services offers landscape design, sprinklers, drip systems, underground drainage, French drains, hardscape, and lighting for homeowners in Plano, Frisco, Allen, and the DFW metro. Free estimates."
 >
   <section class="hero">
     <div class="hero-inner">
       <span class="badge">Serving Plano &amp; the DFW Metro</span>
       <h1>Give your home's exterior a <em>fresh bloom.</em></h1>
-      <p>Bloom Exterior Services delivers top-quality siding, painting, pressure washing, and gutter care that protects your home and boosts its curb appeal — done right, the first time.</p>
+      <p>Bloom Exterior Services delivers landscape design, irrigation, drainage, hardscape, and lighting solutions that protect your property and boost its curb appeal — done right, the first time.</p>
       <div class="btn-row">
         <a href="/contact" class="btn">Get a Free Estimate</a>
         <a href="tel:4697591171" class="btn-outline hero-outline">Call (469) 759-1171</a>
@@ -52,7 +53,7 @@ const testimonials = [
     <div class="section-head">
       <div class="eyebrow">What We Do</div>
       <h2>Exterior Services Built to Last</h2>
-      <p>From a full siding replacement to a simple soft wash, our licensed and insured crews handle every job with care.</p>
+      <p>From a full landscape refresh to a French drain that finally solves your drainage headache, our licensed and insured crews handle every job with care.</p>
     </div>
     <div class="services-grid">
       {services.map((s) => (
@@ -68,7 +69,7 @@ const testimonials = [
 
   <section class="about-section">
     <div class="about-grid">
-      <div class="about-photo" role="img" aria-label="Bloom Exterior Services crew completing a siding project in Plano, TX">[ Photo of crew / completed project ]</div>
+      <div class="about-photo" role="img" aria-label="Bloom Exterior Services crew completing a landscape project in Plano, TX">[ Photo of crew / completed project ]</div>
       <div>
         <div class="eyebrow eyebrow-light">Why Homeowners Choose Us</div>
         <h2>Local, Licensed, and Focused on the Details</h2>
