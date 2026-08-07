@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { sanityEnabled, getAllBlogPosts } from '../../lib/sanity';
 
-type Post = { href: string; title: string; description: string; category: string; pubDate: Date };
+type Post = { href: string; title: string; description: string; category: string; pubDate: Date; image?: string; imageAlt?: string };
 let posts: Post[] = [];
 
 if (sanityEnabled) {
@@ -29,6 +29,8 @@ if (posts.length === 0) {
     description: post.data.description,
     category: post.data.category,
     pubDate: post.data.pubDate,
+    image: post.data.image,
+    imageAlt: post.data.imageAlt,
   }));
 }
 ---
@@ -41,10 +43,17 @@ if (posts.length === 0) {
   <div class="posts-grid">
     {posts.map((post) => (
       <a class="post-card" href={post.href}>
-        <span class="post-category">{post.category}</span>
-        <h2>{post.title}</h2>
-        <p>{post.description}</p>
-        <span class="post-date">{post.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+        {post.image && (
+          <div class="post-card__image">
+            <img src={post.image} alt={post.imageAlt || post.title} loading="lazy" />
+          </div>
+        )}
+        <div class="post-card__body">
+          <span class="post-category">{post.category}</span>
+          <h2>{post.title}</h2>
+          <p>{post.description}</p>
+          <span class="post-date">{post.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+        </div>
       </a>
     ))}
   </div>
@@ -73,7 +82,7 @@ if (posts.length === 0) {
   .post-card {
     background: var(--color-bg-alt);
     border-radius: 10px;
-    padding: 28px 26px;
+    overflow: hidden;
     border: 1px solid var(--color-border);
     transition: transform 0.2s, box-shadow 0.2s;
     text-decoration: none;
@@ -84,6 +93,21 @@ if (posts.length === 0) {
     transform: translateY(-6px);
     box-shadow: 0 12px 24px rgba(15, 42, 74, 0.1);
     border-color: var(--color-green-light);
+  }
+  .post-card__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--color-border);
+  }
+  .post-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .post-card__body {
+    padding: 28px 26px;
   }
   .post-category {
     display: inline-block;
