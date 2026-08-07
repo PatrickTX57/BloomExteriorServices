@@ -19,7 +19,10 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     category: z.enum(blogCategories),
-    tags: z.array(z.string()).default([]),
+            tags: z.array(z.string()).default([]),
+        image: z.string().optional(),
+        imageAlt: z.string().optional(),
+        format: z.enum(['standard', 'listicle']).default('standard'),
   }),
 });
 
