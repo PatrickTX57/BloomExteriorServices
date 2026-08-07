@@ -1,14 +1,11 @@
 ---
-import InspectionForm from '../components/InspectionForm.astro';
-
 export interface Props {
   title: string;
   description: string;
   canonical?: string;
-  showForms?: boolean;
 }
 
-const { title, description, canonical, showForms = true } = Astro.props;
+const { title, description, canonical } = Astro.props;
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const canonicalUrl = canonical ?? `${siteUrl}${Astro.url.pathname}`;
 
@@ -56,6 +53,8 @@ const localBusinessSchema = {
     },
   ],
 };
+
+const bloomIcon = '<svg viewBox="0 0 100 100" width="20" height="20" aria-hidden="true"><g fill="#ffffff"><ellipse cx="50" cy="28" rx="10" ry="17"/><ellipse cx="50" cy="28" rx="10" ry="17" transform="rotate(72 50 50)"/><ellipse cx="50" cy="28" rx="10" ry="17" transform="rotate(144 50 50)"/><ellipse cx="50" cy="28" rx="10" ry="17" transform="rotate(216 50 50)"/><ellipse cx="50" cy="28" rx="10" ry="17" transform="rotate(288 50 50)"/><circle cx="50" cy="50" r="8" fill-opacity="0.55"/></g></svg>';
 ---
 <!doctype html>
 <html lang="en">
@@ -84,11 +83,14 @@ const localBusinessSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Mailchimp signup popup -->
+    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/7f1898a4984b8735a377a8f10/63a8e989108e6b35bb8297cda.js");</script>
   </head>
   <body>
     <header class="site-header">
       <div class="nav-wrap">
-        <a href="/" class="logo"><span class="logo-mark">B</span>Bloom<span class="logo-accent"> Exterior</span></a>
+        <a href="/" class="logo"><span class="logo-mark" set:html={bloomIcon} /><span class="logo-text">Bloom<span class="logo-accent"> Exterior Services</span></span></a>
         <nav id="primary-nav">
           <ul>
             <li><a href="/services">Services</a></li>
@@ -102,18 +104,14 @@ const localBusinessSchema = {
       </div>
     </header>
 
-    {showForms && <InspectionForm variant="top" />}
-
     <main>
       <slot />
     </main>
 
-    {showForms && <InspectionForm variant="bottom" />}
-
     <footer class="site-footer">
       <div class="container footer-grid">
         <div>
-          <div class="footer-logo"><span class="logo-mark" style="background:var(--color-green);">B</span>Bloom<span class="logo-accent"> Exterior Services</span></div>
+          <div class="footer-logo"><span class="logo-mark" style="background:var(--color-green);" set:html={bloomIcon} /><span class="logo-text">Bloom<span class="logo-accent"> Exterior Services</span></span></div>
           <p class="footer-blurb">Protecting and beautifying homes across Plano and the DFW metro with expert exterior services.</p>
         </div>
         <div>
@@ -217,6 +215,9 @@ const localBusinessSchema = {
         color: var(--color-navy) !important;
         text-decoration: none;
       }
+      .logo-text {
+        white-space: nowrap;
+      }
       .logo-accent {
         color: var(--color-green);
       }
@@ -309,6 +310,31 @@ const localBusinessSchema = {
       .btn-outline:hover {
         background: var(--color-navy);
         color: #fff;
+      }
+
+      /* Bloom-mark bullet points, usable on any content list */
+      .bloom-list,
+      .post-body ul {
+        list-style: none;
+        padding-left: 0;
+      }
+      .bloom-list li,
+      .post-body ul li {
+        position: relative;
+        padding-left: 26px;
+        margin-bottom: 0.6rem;
+      }
+      .bloom-list li::before,
+      .post-body ul li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 5px;
+        width: 16px;
+        height: 16px;
+        background-image: url('/favicon.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
       }
 
       /* Footer */
