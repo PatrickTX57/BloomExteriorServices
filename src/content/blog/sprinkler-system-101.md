@@ -4,8 +4,8 @@ description: "A homeowner's guide to sprinkler systems — how they work, how to
 pubDate: 2026-08-14
 category: "Irrigation"
 tags: ["sprinklers", "irrigation", "lawn care"]
-image: "https://images.unsplash.com/photo-1692369584496-3216a88f94c1?auto=format&fit=crop&w=1200&q=80"
-imageAlt: "Sprinkler head watering a green lawn"
+image: "https://images.unsplash.com/photo-1541955193702-9ca03b1bb11a?auto=format&fit=crop&w=1200&q=80"
+imageAlt: "Garden sprinkler watering a lawn"
 ---
 
 A well-designed sprinkler system is one of the best investments you can make in your lawn — but only if it's set up and maintained correctly. Here's what every homeowner should know.
