@@ -4,6 +4,8 @@ description: "Poor drainage is one of the top causes of foundation problems. Lea
 pubDate: 2026-08-11
 category: "Foundation Protection"
 tags: ["foundation", "drainage", "french drains"]
+image: "https://images.unsplash.com/photo-1610079732288-72a77bd816c9?auto=format&fit=crop&w=1200&q=80"
+imageAlt: "Close-up of a house foundation and exterior wall"
 ---
 
 Your foundation is the one part of your home you never see — until something goes wrong. And more often than not, when something does go wrong, poor drainage is the root cause.
@@ -48,7 +50,6 @@ If you're seeing pooling water, cracks, or other warning signs, it's worth getti
 Bloom Exterior Services designs and installs French drains and underground drainage systems throughout Plano, Frisco, Allen, McKinney, and the broader DFW metro. [Contact us](/contact) for a free, no-obligation inspection.
 
 ## Related Reading
-
 - [Underground Drainage Solutions: A Homeowner's Guide](/blog/underground-drainage-solutions/)
 - [Sprinkler System 101: Keeping Your Lawn Healthy Without Wasting Water](/blog/sprinkler-system-101/)
 - [Browse all our exterior services](/services)
