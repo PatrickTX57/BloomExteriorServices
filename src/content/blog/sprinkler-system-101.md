@@ -10,7 +10,7 @@ A well-designed sprinkler system is one of the best investments you can make in 
 
 ## Why Sprinkler Systems Beat Hand Watering
 
-Hand watering with a hose almost always leads to uneven coverage — some spots get soaked while others dry out, leading to patchy grass. A properly zoned sprinkler system delivers consistent, even coverage across your entire yard, on a schedule that matches what your lawn actually needs.
+Hand watering with a hose almost always leads to uneven coverage — some spots get soaked while others dry out, leading to patchy grass. A properly zoned sprinkler system delivers consistent, even coverage across your entire yard, on a schedule that matches what your lawn actually needs. See our [Sprinklers service](/services) for installation and repair details.
 
 ## Getting the Zones Right
 
@@ -35,8 +35,14 @@ Your sprinkler schedule shouldn't be "set it and forget it." Watering needs chan
 
 ## Sprinklers and Drip Systems Work Together
 
-For flower beds, shrubs, and garden areas, drip irrigation is often a better fit than spray heads — it delivers water directly to the root zone with minimal evaporation or runoff. Many of the healthiest yards we install combine sprinkler zones for turf with drip zones for beds and plantings.
+For flower beds, shrubs, and garden areas, [drip irrigation](/services) is often a better fit than spray heads — it delivers water directly to the root zone with minimal evaporation or runoff. Many of the healthiest yards we install combine sprinkler zones for turf with drip zones for beds and plantings. If poor yard drainage is also an issue, read our guide to [underground drainage solutions](/blog/underground-drainage-solutions/) as well.
 
 ## Ready for an Upgrade or a Tune-Up?
 
 Whether you're installing a new system, adding drip zones to existing beds, or just need a seasonal tune-up, Bloom Exterior Services designs and services irrigation systems throughout Plano, Frisco, Allen, McKinney, and the DFW metro. [Contact us](/contact) for a free consultation.
+
+## Related Reading
+
+- [How Poor Drainage Damages Your Foundation (and How to Prevent It)](/blog/poor-drainage-foundation-damage/)
+- [Underground Drainage Solutions: A Homeowner's Guide](/blog/underground-drainage-solutions/)
+- [Browse all our exterior services](/services)
