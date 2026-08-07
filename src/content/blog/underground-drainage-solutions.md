@@ -9,13 +9,13 @@ tags: ["drainage", "gutters", "foundation"]
 Standing water around your home's foundation is one of the most common — and most
 expensive — problems homeowners face. Underground drainage systems solve this by
 redirecting water away from your foundation, yard, and landscaping before it can
-cause damage.
+cause damage. Left unaddressed, this kind of water intrusion is also one of the most common ways [poor drainage damages a home's foundation](/blog/poor-drainage-foundation-damage/).
 
 ## What Is an Underground Drainage System?
 
 An underground drainage system (often called a French drain or a piped drainage
 system) captures water at the surface or from your gutters and routes it
-underground, away from your home, through a network of perforated pipe and gravel.
+underground, away from your home, through a network of perforated pipe and gravel. See our [Underground Drainage and French Drains services](/services) for installation options.
 
 ## Signs You Might Need One
 
@@ -34,3 +34,9 @@ water safely away from the house instead of letting it pool at the downspout.
 
 If you're seeing any of the warning signs above, a professional assessment is the
 best next step. [Contact us](/contact) for a consultation.
+
+## Related Reading
+
+- [How Poor Drainage Damages Your Foundation (and How to Prevent It)](/blog/poor-drainage-foundation-damage/)
+- [Sprinkler System 101: Keeping Your Lawn Healthy Without Wasting Water](/blog/sprinkler-system-101/)
+- [Browse all our exterior services](/services)
