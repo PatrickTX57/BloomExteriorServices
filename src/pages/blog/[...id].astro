@@ -24,14 +24,21 @@ const title = sanityPost ? (sanityPost.seoTitle || sanityPost.title) : post.data
 const description = sanityPost ? sanityPost.excerpt : post.data.description;
 const category = sanityPost ? sanityPost.category : post.data.category;
 const pubDate = new Date(sanityPost ? sanityPost.publishedAt : post.data.pubDate);
+const image = sanityPost ? sanityPost.mainImage : post.data.image;
+const imageAlt = sanityPost ? title : (post.data.imageAlt || title);
 ---
-<BaseLayout title={`${title} | Bloom Exterior Services`} description={description}>
+<BaseLayout title=`${title} | Bloom Exterior Services` description={description}>
   <article class="post">
     <div class="post-header">
       {category && <span class="post-category">{category}</span>}
       <h1>{title}</h1>
       <p class="post-date">{pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
     </div>
+    {image && (
+      <div class="post-hero">
+        <img src={image} alt={imageAlt} loading="eager" />
+      </div>
+    )}
     <div class="post-body">
       {sanityPost ? <PortableText value={sanityPost.body} /> : <Content />}
     </div>
@@ -68,6 +75,20 @@ const pubDate = new Date(sanityPost ? sanityPost.publishedAt : post.data.pubDate
     font-size: 14px;
     font-weight: 600;
     margin: 0;
+  }
+  .post-hero {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    background: var(--color-border);
+  }
+  .post-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .post-body {
     color: var(--color-text);
