@@ -2,13 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const services = [
-  { icon: '🌳', title: 'Landscape', desc: 'Full landscape design and installation — beds, mulch, plantings, and clean lines that boost curb appeal year-round.' },
-  { icon: '💧', title: 'Sprinklers', desc: 'Sprinkler system installation, repair, and seasonal tune-ups that keep your lawn healthy without wasting water.' },
-  { icon: '🚰', title: 'Drip Systems', desc: "Efficient drip irrigation for flower beds, shrubs, and gardens that delivers water exactly where it's needed." },
-  { icon: '🌊', title: 'Underground Drainage', desc: 'Underground drainage solutions that move water away from your home and yard before it becomes a problem.' },
-  { icon: '🪨', title: 'French Drains', desc: 'French drain installation to redirect groundwater and keep low spots in your yard from flooding after storms.' },
-  { icon: '🧱', title: 'Hardscape', desc: 'Patios, walkways, and retaining walls built with quality materials that stand up to Texas weather.' },
-  { icon: '💡', title: 'Permanent and Holiday Lighting', desc: 'Permanent architectural lighting and holiday lighting installation — set the mood year-round or just for the season.' },
+  { icon: '\u{1F333}', title: 'Landscape', desc: 'Full landscape design and installation \u2014 beds, mulch, plantings, and clean lines that boost curb appeal year-round.' },
+  { icon: '\u{1F4A7}', title: 'Sprinklers', desc: "Sprinkler system installation, repair, and seasonal tune-ups that keep your lawn healthy without wasting water." },
+  { icon: '\u{1F6B0}', title: 'Drip Systems', desc: "Efficient drip irrigation for flower beds, shrubs, and gardens that delivers water exactly where it's needed." },
+  { icon: '\u{1F30A}', title: 'Underground Drainage', desc: 'Underground drainage solutions that move water away from your home and yard before it becomes a problem.' },
+  { icon: '\u{1FAA8}', title: 'French Drains', desc: 'French drain installation to redirect groundwater and keep low spots in your yard from flooding after storms.' },
+  { icon: '\u{1F9F1}', title: 'Hardscape', desc: 'Patios, walkways, and retaining walls built with quality materials that stand up to Texas weather.' },
+  { icon: '\u{1F4A1}', title: 'Permanent and Holiday Lighting', desc: 'Permanent architectural lighting and holiday lighting installation \u2014 set the mood year-round or just for the season.', link: '/lighting/', linkText: 'See lighting by city' },
 ];
 ---
 <BaseLayout
@@ -26,6 +26,7 @@ const services = [
         <div class="service-icon">{s.icon}</div>
         <h2>{s.title}</h2>
         <p>{s.desc}</p>
+        {s.link && <a href={s.link} class="service-card-link">{s.linkText} &rarr;</a>}
       </div>
     ))}
   </div>
@@ -83,6 +84,17 @@ const services = [
   .service-card p {
     color: var(--color-text-muted);
     font-size: 15px;
+  }
+  .service-card-link {
+    display: inline-block;
+    margin-top: 14px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--color-green);
+    text-decoration: none;
+  }
+  .service-card-link:hover {
+    color: var(--color-green-light);
   }
   @media (max-width: 900px) {
     .services-grid {
