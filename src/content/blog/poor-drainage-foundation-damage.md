@@ -4,8 +4,8 @@ description: "Poor drainage is one of the top causes of foundation problems. Lea
 pubDate: 2026-08-11
 category: "Foundation Protection"
 tags: ["foundation", "drainage", "french drains"]
-image: "https://images.unsplash.com/photo-1610079732288-72a77bd816c9?auto=format&fit=crop&w=1200&q=80"
-imageAlt: "Close-up of a house foundation and exterior wall"
+image: "https://images.unsplash.com/photo-1769164720530-a4f06baf3eeb?auto=format&fit=crop&w=1200&q=80"
+imageAlt: "A downspout draining next to a house foundation"
 ---
 
 Your foundation is the one part of your home you never see — until something goes wrong. And more often than not, when something does go wrong, poor drainage is the root cause.
