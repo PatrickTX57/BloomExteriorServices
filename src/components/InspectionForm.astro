@@ -4,7 +4,7 @@ export interface Props {
 }
 const { variant = 'top' } = Astro.props;
 
-// Web3Forms — free form backend, no account dashboard needed beyond the
+// Web3Forms \u2014 free form backend, no account dashboard needed beyond the
 // access key. Key lives in PUBLIC_WEB3FORMS_ACCESS_KEY (Netlify env vars /
 // .env) rather than hardcoded, so it can be rotated without a code change.
 // Falls back to a mailto link if that env var isn't set, so the form never
@@ -24,7 +24,7 @@ const formId = `inspection-form-${variant}`;
       method="POST"
     >
       {accessKey && <input type="hidden" name="access_key" value={accessKey} />}
-      {accessKey && <input type="hidden" name="subject" value="New Free Inspection Request — Bloom Exterior Services" />}
+      {accessKey && <input type="hidden" name="subject" value="New Free Inspection Request \u2014 Bloom Exterior Services" />}
       {accessKey && <input type="hidden" name="from_name" value="Bloom Exterior Services Website" />}
 
       <div class="inspection-form__fields">
@@ -40,10 +40,23 @@ const formId = `inspection-form-${variant}`;
         <label class="sr-only" for={`${formId}-phone`}>Phone</label>
         <input id={`${formId}-phone`} type="tel" name="Phone" placeholder="Phone" required autocomplete="tel" />
       </div>
+      <div class="h-captcha" data-captcha="true" data-size="compact"></div>
       <button type="submit" class="btn inspection-form__submit">Get My Free Estimate</button>
     </form>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.inspection-form__form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      const hCaptcha = form.querySelector('textarea[name="h-captcha-response"]');
+      if (!hCaptcha || !(hCaptcha as HTMLTextAreaElement).value) {
+        e.preventDefault();
+        alert('Please complete the captcha to submit the form.');
+      }
+    });
+  });
+</script>
 
 <style>
   .inspection-form {
