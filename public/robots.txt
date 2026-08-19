@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bloomexteriorservices.com/sitemap-index.xml
+Sitemap: https://bloomexteriors.com/sitemap-index.xml
