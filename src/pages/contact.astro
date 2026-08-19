@@ -1,13 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Same Web3Forms setup as the slim top/bottom bars \u2014 see src/components/InspectionForm.astro
+// Same Web3Forms setup as the slim top/bottom bars — see src/components/InspectionForm.astro
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY;
 const fallbackMailto = 'mailto:patricksweeneybiz@gmail.com?subject=New%20Website%20Contact%20Request';
 
 const iconPin = '\u{1F4CD}';
 const iconPhone = '\u{1F4DE}';
-const iconEmail = '\u2709\uFE0F';
 const iconClock = '\u{1F552}';
 const dash = '\u2013';
 ---
@@ -20,7 +19,7 @@ const dash = '\u2013';
     <div class="contact-info">
       <div class="eyebrow">Contact Us</div>
       <h1>Let's Talk About Your Project</h1>
-      <p>Reach out by phone, email, or the form and we'll get back to you within one business day.</p>
+      <p>Reach out by phone or the form and we'll get back to you within one business day.</p>
       <div class="info-row">
         <div class="info-icon">{iconPin}</div>
         <div><strong>Address</strong><span>1600 W Plano Pkwy, STE 9<br />Plano, TX 75075</span></div>
@@ -30,10 +29,6 @@ const dash = '\u2013';
         <div><strong>Phone</strong><a href="tel:4697591171">(469) 759-1171</a></div>
       </div>
       <div class="info-row">
-        <div class="info-icon">{iconEmail}</div>
-        <div><strong>Email</strong><a href="mailto:info@bloomexteriorservices.com">info@bloomexteriorservices.com</a></div>
-      </div>
-      <div class="info-row">
         <div class="info-icon">{iconClock}</div>
         <div><strong>Hours</strong><span>Mon{dash}Fri: 8:00 AM {dash} 6:00 PM<br />Sat: 9:00 AM {dash} 2:00 PM</span></div>
       </div>
@@ -41,7 +36,7 @@ const dash = '\u2013';
 
     <form action={accessKey ? 'https://api.web3forms.com/submit' : fallbackMailto} method="POST" id="contact-form">
       {accessKey && <input type="hidden" name="access_key" value={accessKey} />}
-      {accessKey && <input type="hidden" name="subject" value="New Contact Form Submission \u2014 Bloom Exterior Services" />}
+      {accessKey && <input type="hidden" name="subject" value="New Contact Form Submission — Bloom Exterior Services" />}
       {accessKey && <input type="hidden" name="from_name" value="Bloom Exterior Services Website" />}
 
       <div class="form-row">
