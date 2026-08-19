@@ -4,7 +4,7 @@ import sanity from '@sanity/astro';
 import react from '@astrojs/react';
 
 // TODO: update to your final domain once connected
-const SITE_URL = 'https://bloomexteriorservices.com';
+const SITE_URL = 'https://bloomexteriors.com';
 
 // Sanity's embedded Studio (at /studio) only loads once a real project ID
 // exists, so the site builds fine before Sanity is connected.
