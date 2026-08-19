@@ -10,7 +10,7 @@ export interface Props {
 
 const { title, description, canonical, showForms = true } = Astro.props;
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
-const canonicalUrl = canonical ?? `${siteUrl}${Astro.url.pathname}`;
+const canonicalUrl = canonical ?? (siteUrl + Astro.url.pathname);
 
 const business = {
   name: 'Bloom Exterior Services',
@@ -20,7 +20,6 @@ const business = {
   postalCode: '75075',
   phoneDisplay: '(469) 759-1171',
   phoneHref: '4697591171',
-  email: 'info@bloomexteriorservices.com',
   areaServed: ['Plano, TX', 'Frisco, TX', 'Allen, TX', 'McKinney, TX', 'Dallas-Fort Worth Metro'],
 };
 
@@ -28,8 +27,7 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'HomeAndConstructionBusiness',
   name: business.name,
-  telephone: `+1-469-759-1171`,
-  email: business.email,
+  telephone: '+1-469-759-1171',
   address: {
     '@type': 'PostalAddress',
     streetAddress: business.streetAddress,
@@ -61,373 +59,372 @@ const bloomIcon = '<svg viewBox="0 0 200 200" width="100%" height="100%" aria-hi
 ---
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalUrl} />
-    <meta name="robots" content="index, follow" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:site_name" content={business.name} />
-    <meta property="og:locale" content="en_US" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:site_name" content={business.name} />
+  <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
 
-    <!-- Local Business Schema -->
-    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <!-- Local Business Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Mailchimp signup popup -->
-    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/7f1898a4984b8735a377a8f10/63a8e989108e6b35bb8297cda.js");</script>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="nav-wrap">
-        <a href="/" class="logo"><span class="logo-mark" set:html={bloomIcon} /><span class="logo-text">Bloom<span class="logo-accent"> Exterior Services</span></span></a>
-        <nav id="primary-nav">
-          <ul>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-        </nav>
-        <a href="/contact" class="nav-cta">Get a Free Quote</a>
-        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
-      </div>
-    </header>
+  <!-- Mailchimp signup popup -->
+  <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/7f1898a4984b8735a377a8f10/63a8e989108e6b35bb8297cda.js");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a href="/" class="logo"><span class="logo-mark" set:html={bloomIcon} /><span class="logo-text">Bloom<span class="logo-accent"> Exterior Services</span></span></a>
+    <nav id="primary-nav">
+      <ul>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="/contact" class="nav-cta">Get a Free Quote</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+  </div>
+</header>
 
-    {showForms && <InspectionForm variant="top" />}
+{showForms && <InspectionForm variant="top" />}
 
-    <main>
-      <slot />
-    </main>
+<main>
+  <slot />
+</main>
 
-    {showForms && <InspectionForm variant="bottom" />}
+{showForms && <InspectionForm variant="bottom" />}
 
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <div>
-          <div class="footer-logo"><span class="logo-mark" set:html={bloomIcon} /><span class="logo-text">Bloom<span class="logo-accent"> Exterior Services</span></span></div>
-          <p class="footer-blurb">Protecting and beautifying homes across Plano and the DFW metro with expert exterior services.</p>
-        </div>
-        <div>
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <ul>
-            <li>{business.streetAddress}<br />{business.addressLocality}, {business.addressRegion} {business.postalCode}</li>
-            <li><a href={`tel:${business.phoneHref}`}>{business.phoneDisplay}</a></li>
-            <li><a href={`mailto:${business.email}`}>{business.email}</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">&copy; {new Date().getFullYear()} {business.name}. All rights reserved.</div>
-    </footer>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-logo"><span class="logo-mark" set:html={bloomIcon} /><span class="logo-text">Bloom<span class="logo-accent"> Exterior Services</span></span></div>
+      <p class="footer-blurb">Protecting and beautifying homes across Plano and the DFW metro with expert exterior services.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li>{business.streetAddress}<br />{business.addressLocality}, {business.addressRegion} {business.postalCode}</li>
+        <li><a href={'tel:' + business.phoneHref}>{business.phoneDisplay}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; {new Date().getFullYear()} {business.name}. All rights reserved.</div>
+</footer>
 
-    <script>
-      const toggle = document.getElementById('menu-toggle');
-      const nav = document.getElementById('primary-nav');
-      toggle?.addEventListener('click', () => {
-        const isOpen = nav?.classList.toggle('is-open');
-        toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
-      });
-    </script>
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('primary-nav');
+  toggle?.addEventListener('click', () => {
+    const isOpen = nav?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+</script>
 
-    <!-- Web3Forms hCaptcha client (spam protection for all forms) -->
-    <script src="https://web3forms.com/client/script.js" async defer></script>
+<!-- Web3Forms hCaptcha client (spam protection for all forms) -->
+<script src="https://web3forms.com/client/script.js" async defer></script>
 
-    <style is:global>
-      :root {
-        color-scheme: light;
-        font-family: 'Segoe UI', Arial, sans-serif;
+<style is:global>
+  :root {
+    color-scheme: light;
+    font-family: 'Segoe UI', Arial, sans-serif;
 
-        /* Brand palette */
-        --color-navy: #0f2a4a;
-        --color-navy-dark: #0a1d33;
-        --color-green: #2c7a3f;
-        --color-green-light: #3fa257;
-        --color-bg: #ffffff;
-        --color-bg-alt: #f5f7f8;
-        --color-text: #0a1d33;
-        --color-text-muted: #5a6470;
-        --color-border: #e6eaed;
+    /* Brand palette */
+    --color-navy: #0f2a4a;
+    --color-navy-dark: #0a1d33;
+    --color-green: #2c7a3f;
+    --color-green-light: #3fa257;
+    --color-bg: #ffffff;
+    --color-bg-alt: #f5f7f8;
+    --color-text: #0a1d33;
+    --color-text-muted: #5a6470;
+    --color-border: #e6eaed;
 
-        /* Legacy aliases kept for components written against the old names */
-        --color-navy-light: var(--color-green-light);
-        --color-green-bright: var(--color-green-light);
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        color: var(--color-text);
-        background: var(--color-bg);
-        line-height: 1.6;
-      }
-      h1, h2, h3, h4 {
-        color: var(--color-navy);
-        line-height: 1.2;
-      }
-      a {
-        color: var(--color-green);
-      }
-      a:hover {
-        color: var(--color-green-light);
-      }
-      .container {
-        max-width: 1140px;
-        margin: 0 auto;
-        padding: 0 24px;
-      }
+    /* Legacy aliases kept for components written against the old names */
+    --color-navy-light: var(--color-green-light);
+    --color-green-bright: var(--color-green-light);
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.6;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-navy);
+    line-height: 1.2;
+  }
+  a {
+    color: var(--color-green);
+  }
+  a:hover {
+    color: var(--color-green-light);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
 
-      /* Header */
-      .site-header {
-        position: sticky;
-        top: 0;
-        background: var(--color-bg);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        z-index: 100;
-      }
-      .nav-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 16px 24px;
-        max-width: 1140px;
-        margin: 0 auto;
-        gap: 24px;
-      }
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 800;
-        font-size: 22px;
-        color: var(--color-navy) !important;
-        text-decoration: none;
-      }
-      .logo-text {
-        white-space: nowrap;
-      }
-      .logo-accent {
-        color: var(--color-green);
-      }
-      .logo-mark {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        overflow: hidden;
-      }
-      #primary-nav ul {
-        list-style: none;
-        display: flex;
-        gap: 32px;
-        margin: 0;
-        padding: 0;
-      }
-      #primary-nav a {
-        font-weight: 600;
-        font-size: 15px;
-        color: var(--color-text) !important;
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      #primary-nav a:hover {
-        color: var(--color-green) !important;
-      }
-      .nav-cta {
-        background: var(--color-green);
-        color: #fff !important;
-        padding: 10px 20px;
-        border-radius: 6px;
-        font-weight: 700;
-        text-decoration: none;
-        white-space: nowrap;
-      }
-      .nav-cta:hover {
-        background: var(--color-green-light);
-      }
-      .menu-toggle {
-        display: none;
-        background: none;
-        border: none;
-        font-size: 26px;
-        color: var(--color-navy);
-        cursor: pointer;
-      }
+  /* Header */
+  .site-header {
+    position: sticky;
+    top: 0;
+    background: var(--color-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    z-index: 100;
+  }
+  .nav-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    max-width: 1140px;
+    margin: 0 auto;
+    gap: 24px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--color-navy) !important;
+    text-decoration: none;
+  }
+  .logo-text {
+    white-space: nowrap;
+  }
+  .logo-accent {
+    color: var(--color-green);
+  }
+  .logo-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  #primary-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+  }
+  #primary-nav a {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--color-text) !important;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  #primary-nav a:hover {
+    color: var(--color-green) !important;
+  }
+  .nav-cta {
+    background: var(--color-green);
+    color: #fff !important;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .nav-cta:hover {
+    background: var(--color-green-light);
+  }
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 26px;
+    color: var(--color-navy);
+    cursor: pointer;
+  }
 
-      main {
-        max-width: 1140px;
-        margin: 0 auto;
-        padding: 0 24px;
-      }
+  main {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
 
-      .btn,
-      button[type='submit'] {
-        display: inline-block;
-        background: var(--color-green);
-        color: #ffffff;
-        font-weight: 700;
-        text-decoration: none;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-size: 16px;
-      }
-      .btn:hover,
-      button[type='submit']:hover {
-        background: var(--color-green-light);
-        color: #ffffff;
-        transform: translateY(-2px);
-      }
-      .btn-outline {
-        border: 2px solid var(--color-navy);
-        color: var(--color-navy);
-        background: transparent;
-        padding: 0.7rem 1.4rem;
-        border-radius: 6px;
-        font-weight: 700;
-        text-decoration: none;
-        display: inline-block;
-      }
-      .btn-outline:hover {
-        background: var(--color-navy);
-        color: #fff;
-      }
+  .btn,
+  button[type='submit'] {
+    display: inline-block;
+    background: var(--color-green);
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 16px;
+  }
+  .btn:hover,
+  button[type='submit']:hover {
+    background: var(--color-green-light);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+  .btn-outline {
+    border: 2px solid var(--color-navy);
+    color: var(--color-navy);
+    background: transparent;
+    padding: 0.7rem 1.4rem;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-outline:hover {
+    background: var(--color-navy);
+    color: #fff;
+  }
 
-      /* Bloom-mark bullet points, usable on any content list */
-      .bloom-list,
-      .post-body ul {
-        list-style: none;
-        padding-left: 0;
-      }
-      .bloom-list li,
-      .post-body ul li {
-        position: relative;
-        padding-left: 26px;
-        margin-bottom: 0.6rem;
-      }
-      .bloom-list li::before,
-      .post-body ul li::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 5px;
-        width: 16px;
-        height: 16px;
-        background-image: url('/favicon.svg');
-        background-size: contain;
-        background-repeat: no-repeat;
-      }
+  /* Bloom-mark bullet points, usable on any content list */
+  .bloom-list,
+  .post-body ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .bloom-list li,
+  .post-body ul li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 0.6rem;
+  }
+  .bloom-list li::before,
+  .post-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    background-image: url('/favicon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 
-      /* Footer */
-      .site-footer {
-        background: var(--color-navy-dark);
-        color: #c8d2dc;
-        padding: 50px 0 20px;
-      }
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr;
-        gap: 40px;
-        margin-bottom: 36px;
-      }
-      .footer-logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 800;
-        font-size: 20px;
-        color: #fff;
-        margin-bottom: 14px;
-      }
-      .footer-blurb {
-        max-width: 320px;
-        font-size: 14px;
-        color: #c8d2dc;
-      }
-      .site-footer h4 {
-        color: #fff;
-        font-size: 15px;
-        margin-bottom: 16px;
-      }
-      .site-footer ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .site-footer li {
-        margin-bottom: 10px;
-        font-size: 14px;
-      }
-      .site-footer a {
-        color: #c8d2dc;
-        text-decoration: none;
-      }
-      .site-footer a:hover {
-        color: var(--color-green-light);
-      }
-      .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding-top: 20px;
-        text-align: center;
-        font-size: 13px;
-        color: #8c97a3;
-        max-width: 1140px;
-        margin: 0 auto;
-        padding-left: 24px;
-        padding-right: 24px;
-      }
+  /* Footer */
+  .site-footer {
+    background: var(--color-navy-dark);
+    color: #c8d2dc;
+    padding: 50px 0 20px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 36px;
+  }
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+  .footer-blurb {
+    max-width: 320px;
+    font-size: 14px;
+    color: #c8d2dc;
+  }
+  .site-footer h4 {
+    color: #fff;
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+  .site-footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .site-footer li {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  .site-footer a {
+    color: #c8d2dc;
+    text-decoration: none;
+  }
+  .site-footer a:hover {
+    color: var(--color-green-light);
+  }
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #8c97a3;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 
-      @media (max-width: 900px) {
-        #primary-nav ul,
-        .nav-cta {
-          display: none;
-        }
-        #primary-nav.is-open ul {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: var(--color-bg);
-          padding: 20px 24px;
-          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-        }
-        .menu-toggle {
-          display: block;
-        }
-        .footer-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </body>
+  @media (max-width: 900px) {
+    #primary-nav ul,
+    .nav-cta {
+      display: none;
+    }
+    #primary-nav.is-open ul {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--color-bg);
+      padding: 20px 24px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    }
+    .menu-toggle {
+      display: block;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</body>
 </html>
